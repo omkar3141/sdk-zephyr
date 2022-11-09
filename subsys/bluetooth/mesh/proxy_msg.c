@@ -259,6 +259,8 @@ struct bt_mesh_proxy_role *bt_mesh_proxy_role_setup(struct bt_conn *conn,
 	role->cb.recv = recv;
 	role->cb.send = send;
 
+	BT_INFO("bt_conn_ref %p", (void *)conn);
+
 	return role;
 }
 
@@ -269,9 +271,11 @@ void bt_mesh_proxy_role_cleanup(struct bt_mesh_proxy_role *role)
 	 */
 	(void)k_work_cancel_delayable(&role->sar_timer);
 	bt_conn_unref(role->conn);
+	BT_INFO("bt_conn_unref %p", (void *)role->conn);
 	role->conn = NULL;
 
 	conn_count--;
+
 
 	bt_mesh_adv_gatt_update();
 }

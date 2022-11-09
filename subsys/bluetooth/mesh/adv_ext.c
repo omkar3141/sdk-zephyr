@@ -154,7 +154,7 @@ static int adv_start(struct bt_mesh_ext_adv *adv,
 
 	err = bt_le_ext_adv_start(adv->instance, start);
 	if (err) {
-		BT_ERR("Advertising failed: err %d", err);
+		BT_ERR("Advertising failed: err %d adv->tag %d", err, adv->tag);
 		atomic_clear_bit(adv->flags, ADV_FLAG_ACTIVE);
 	}
 
@@ -279,6 +279,7 @@ static bool schedule_send(struct bt_mesh_ext_adv *adv)
 	timestamp = adv->timestamp;
 
 	if (atomic_test_and_clear_bit(adv->flags, ADV_FLAG_PROXY)) {
+		BT_ERR("bt_le_ext_adv_stop for proxy");
 		(void)bt_le_ext_adv_stop(adv->instance);
 		atomic_clear_bit(adv->flags, ADV_FLAG_ACTIVE);
 	}

@@ -844,10 +844,10 @@ static void gatt_connected(struct bt_conn *conn, uint8_t err)
 	client->cli = bt_mesh_proxy_role_setup(conn, proxy_send,
 					       proxy_msg_recv);
 
-	/* Try to re-enable advertising in case it's possible */
-	if (bt_mesh_proxy_conn_count_get() < CONFIG_BT_MAX_CONN) {
-		bt_mesh_adv_gatt_update();
-	}
+	// /* Try to re-enable advertising in case it's possible */
+	// if (bt_mesh_proxy_conn_count_get() < CONFIG_BT_MAX_CONN) {
+	// 	bt_mesh_adv_gatt_update();
+	// }
 }
 
 static void gatt_disconnected(struct bt_conn *conn, uint8_t reason)
