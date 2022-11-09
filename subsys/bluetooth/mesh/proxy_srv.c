@@ -391,7 +391,7 @@ int bt_mesh_proxy_identity_enable(void)
 	}
 
 	if (bt_mesh_subnet_foreach(node_id_start)) {
-		bt_mesh_adv_gatt_update();
+		bt_mesh_adv_gatt_update(false);
 	}
 
 	return 0;
@@ -846,7 +846,7 @@ static void gatt_connected(struct bt_conn *conn, uint8_t err)
 
 	/* Try to re-enable advertising in case it's possible */
 	if (bt_mesh_proxy_conn_count_get() < CONFIG_BT_MAX_CONN) {
-		bt_mesh_adv_gatt_update();
+		bt_mesh_adv_gatt_update(true);
 	}
 }
 

@@ -273,7 +273,7 @@ void bt_mesh_proxy_role_cleanup(struct bt_mesh_proxy_role *role)
 
 	conn_count--;
 
-	bt_mesh_adv_gatt_update();
+	bt_mesh_adv_gatt_update(false);
 }
 
 int bt_mesh_proxy_conn_count_get(void)

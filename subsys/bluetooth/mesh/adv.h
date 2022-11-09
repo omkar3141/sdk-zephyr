@@ -58,7 +58,7 @@ struct net_buf *bt_mesh_adv_buf_get(k_timeout_t timeout);
 
 struct net_buf *bt_mesh_adv_buf_get_by_tag(uint8_t tag, k_timeout_t timeout);
 
-void bt_mesh_adv_gatt_update(void);
+void bt_mesh_adv_gatt_update(bool stop_adv);
 
 void bt_mesh_adv_buf_get_cancel(void);
 

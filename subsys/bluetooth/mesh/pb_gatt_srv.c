@@ -206,7 +206,7 @@ int bt_mesh_pb_gatt_srv_disable(void)
 	bt_gatt_service_unregister(&prov_svc);
 	service_registered = false;
 
-	bt_mesh_adv_gatt_update();
+	bt_mesh_adv_gatt_update(false);
 
 	return 0;
 }

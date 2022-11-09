@@ -189,7 +189,7 @@ static int link_accept(const struct prov_bearer_cb *cb, void *cb_data)
 	}
 
 	(void)bt_mesh_pb_gatt_srv_enable();
-	bt_mesh_adv_gatt_update();
+	bt_mesh_adv_gatt_update(false);
 
 	link.cb = cb;
 	link.cb_data = cb_data;

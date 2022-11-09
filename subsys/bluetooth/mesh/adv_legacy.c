@@ -172,8 +172,9 @@ void bt_mesh_adv_buf_relay_ready(void)
 	/* Will be handled automatically */
 }
 
-void bt_mesh_adv_gatt_update(void)
+void bt_mesh_adv_gatt_update(bool stop_adv)
 {
+	(void) stop_adv;
 	bt_mesh_adv_buf_get_cancel();
 }
 

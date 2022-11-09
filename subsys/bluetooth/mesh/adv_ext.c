@@ -302,9 +302,15 @@ static bool schedule_send(struct bt_mesh_ext_adv *adv)
 	return true;
 }
 
-void bt_mesh_adv_gatt_update(void)
+void bt_mesh_adv_gatt_update(bool stop_adv)
 {
-	(void)schedule_send(gatt_adv_get());
+	struct bt_mesh_ext_adv *adv = gatt_adv_get();
+	if (stop_adv) {
+		if (atomic_test_and_clear_bit(adv->flags, ADV_FLAG_PROXY)) {
+			atomic_clear_bit(adv->flags, ADV_FLAG_ACTIVE);
+		}
+	}
+	(void)schedule_send(adv);
 }
 
 void bt_mesh_adv_buf_local_ready(void)
